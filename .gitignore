@@ -1,0 +1,67 @@
+1. Create a .gitignore file in your project root directory:
+node_modules/
+.env
+.DS_Store
+*.log
+dist/
+build/
+coverage/
+.vscode/
+.idea/
+2. If you already committed node_modules, remove it:
+bash# Remove node_modules from Git tracking
+git rm -r --cached node_modules
+
+# Add .gitignore
+git add .gitignore
+
+# Commit the changes
+git commit -m "Remove node_modules and add .gitignore"
+
+# Push to GitHub
+git push origin main
+3. Standard .gitignore for Express.js projects:.gitignore for Express.jsCode # Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+4. Quick Setup Command:
+bash# Create .gitignore file
+echo "node_modules/" > .gitignore
+
+# Initialize git (if not already done)
+git init
+
+# Add all files except node_modules
+git add .
+
+# Commit
+git commit -m "Initial commit"
+
+# Add remote and push
+git remote add origin <your-github-repo-url>
+git push -u origin main
+5. Important Notes:
+
+✅ Always create .gitignore BEFORE your first commit
+✅ Include package.json and package-lock.json (so others can install dependencies)
+✅ Others will run npm install to get their own node_modules
+❌ Never commit .env files 
