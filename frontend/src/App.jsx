@@ -1,11 +1,14 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom'
 
 const App = () => {
   return (
     <div>
-      <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+      <nav>Navbar</nav>
+      <main className='min-h-screen max-w-screen-2xl mx-auto px-4 py-6'>
+        <Outlet/>
+      </main>
+      <footer>Footer</footer>
     </div>
   )
 }
