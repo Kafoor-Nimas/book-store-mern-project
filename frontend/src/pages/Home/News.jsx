@@ -14,6 +14,7 @@ import news1 from "../../assets/news/news-1.png";
 import news2 from "../../assets/news/news-2.png";
 import news3 from "../../assets/news/news-3.png";
 import news4 from "../../assets/news/news-4.png";
+import { Link } from "react-router-dom";
 
 const news = [
   {
@@ -80,15 +81,29 @@ const News = () => {
         modules={[Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+        {news.map((newsItem, index) => (
+          <SwiperSlide key={index}>
+            <div className="flex flex-col sm:flex-row sm:justify-between items-center gap-12">
+              {/* content */}
+              <div className="py-6">
+                <Link to="/">
+                  <h3 className="text-lg font-medium hover:text-blue-500 mb-4">
+                    {newsItem.title}
+                  </h3>
+                </Link>
+                <div className="w-12 h-[4px] bg-primary mb-5"></div>
+                <p className="text-sm text-gray-600">{newsItem.description}</p>
+              </div>
+              <div>
+                <img
+                  src={newsItem.image}
+                  alt={newsItem.title}
+                  className="w-full object-cover"
+                />
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );
