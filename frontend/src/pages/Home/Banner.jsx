@@ -3,8 +3,11 @@ import bannerImg from "../../assets/banner.png";
 
 const Banner = () => {
   return (
-    <div>
-      <div>
+    <div className="flex flex-col md:flex-row-reverse items-center justify-between gap-12 py-16">
+      <div className="md:w-1/2 w-full flex items-center md:justify-end">
+        <img src={bannerImg} alt="Banner" />
+      </div>
+      <div className="md:w-1/2 w-full">
         <h1 className="md:text-5xl text-2xl font-medium mb-7">
           New Releases This Week
         </h1>
@@ -15,9 +18,6 @@ const Banner = () => {
           everyone
         </p>
         <button className="btn-primary">Subscribe</button>
-      </div>
-      <div>
-        <img src={bannerImg} alt="Banner" />
       </div>
     </div>
   );
