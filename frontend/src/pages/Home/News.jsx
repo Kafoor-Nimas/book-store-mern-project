@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 // import required modules
-import { Pagination } from "swiper/modules";
+import { Pagination , Navigation } from "swiper/modules";
 
 import news1 from "../../assets/news/news-1.png";
 import news2 from "../../assets/news/news-2.png";
@@ -60,25 +60,23 @@ const News = () => {
       <h2 className="text-3xl font-semibold mb-6">News</h2>
       <Swiper
         slidesPerView={1}
-        spaceBetween={10}
-        pagination={{
-          clickable: true,
-        }}
+        spaceBetween={30}
+        navigation={true}
         breakpoints={{
           640: {
-            slidesPerView: 2,
+            slidesPerView: 1,
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 4,
+            slidesPerView: 2,
             spaceBetween: 40,
           },
           1024: {
-            slidesPerView: 5,
+            slidesPerView: 2,
             spaceBetween: 50,
           },
         }}
-        modules={[Pagination]}
+        modules={[Pagination , Navigation]}
         className="mySwiper"
       >
         {news.map((newsItem, index) => (
@@ -94,7 +92,7 @@ const News = () => {
                 <div className="w-12 h-[4px] bg-primary mb-5"></div>
                 <p className="text-sm text-gray-600">{newsItem.description}</p>
               </div>
-              <div>
+              <div className="flex-shrink-0">
                 <img
                   src={newsItem.image}
                   alt={newsItem.title}
