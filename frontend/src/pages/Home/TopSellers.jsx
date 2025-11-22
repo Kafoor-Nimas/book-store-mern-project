@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Bookcard from "../books/Bookcard";
-import { useRef } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 // import './styles.css';
 
 // import required modules
-import { Pagination } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 
 const categories = [
   "Choose a genre",
@@ -58,25 +58,27 @@ const TopSellers = () => {
       </div>
       <Swiper
         slidesPerView={1}
-        spaceBetween={10}
-        pagination={{
-          clickable: true,
-        }}
+        spaceBetween={30}
+        navigation={true}
         breakpoints={{
           640: {
-            slidesPerView: 2,
+            slidesPerView: 1,
             spaceBetween: 20,
           },
-          768: {
-            slidesPerView: 4,
+          860: {
+            slidesPerView: 2,
             spaceBetween: 40,
           },
           1024: {
-            slidesPerView: 5,
+            slidesPerView: 2,
+            spaceBetween: 50,
+          },
+          1309: {
+            slidesPerView: 3,
             spaceBetween: 50,
           },
         }}
-        modules={[Pagination]}
+        modules={[Pagination, Navigation]}
         className="mySwiper"
       >
         {filterdBooks.length > 0 &&
