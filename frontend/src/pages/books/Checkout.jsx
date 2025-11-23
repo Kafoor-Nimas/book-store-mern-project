@@ -24,7 +24,7 @@ const Checkout = () => {
     // console.log("✅ Form submitted!", data);
     const newOrder = {
       name: data.name,
-      email:  currentUser?.email,
+      email: currentUser?.email,
       address: {
         city: data.city,
         country: data.country,
@@ -97,7 +97,7 @@ const Checkout = () => {
                         name="phone"
                         id="phone"
                         className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        placeholder="+123 456 7890"
+                        placeholder="077 456 7890"
                       />
                     </div>
 
