@@ -13,6 +13,20 @@ const postBook = async (req, res) => {
   }
 };
 
+//get all books
+const getAllBooks = async (req, res) => {
+  try {
+    const books = await Book.find().sort({
+      createdAt: -1,
+    });
+    res.status(200).send(books);
+  } catch (error) {
+    console.error("Error fetching books", error);
+    res.status(500).send({ message: "Failed to fetch books" });
+  }
+};
+
 module.exports = {
   postBook,
+  getAllBooks,
 };

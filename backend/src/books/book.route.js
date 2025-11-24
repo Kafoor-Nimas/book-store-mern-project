@@ -1,6 +1,6 @@
 const express = require("express");
 const Book = require("./book.model");
-const { postBook } = require("./book.controller");
+const { postBook, getAllBooks } = require("./book.controller");
 
 const router = express.Router();
 
@@ -8,5 +8,6 @@ const router = express.Router();
 router.post("/create-book", postBook);
 
 // get all books
+router.get("/", getAllBooks);
 
 module.exports = router;
