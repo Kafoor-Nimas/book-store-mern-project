@@ -42,8 +42,21 @@ const getSingleBook = async (req, res) => {
   }
 };
 
+// update a book
+const updateBook = async (req, res) => {
+  const { id } = req.params;
+  const updatedBook = await Book.findByIdAndUpdate(id, req.body, { new: true });
+  if (!updatedBook) {
+    return res.status(404).send({ message: "Book not found" });
+  }
+  res
+    .status(200)
+    .send({ message: "Book updated successfully", book: updatedBook });
+};
+
 module.exports = {
   postBook,
   getAllBooks,
   getSingleBook,
+  updateBook,
 };
