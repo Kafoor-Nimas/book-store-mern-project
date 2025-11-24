@@ -1,5 +1,5 @@
 const Book = require("./book.model");
-
+//post books
 const postBook = async (req, res) => {
   try {
     const newBook = await Book({ ...req.body });
@@ -27,7 +27,6 @@ const getAllBooks = async (req, res) => {
 };
 
 //get single book
-
 const getSingleBook = async (req, res) => {
   try {
     const { id } = req.params;
