@@ -1,6 +1,12 @@
 const express = require("express");
 const Book = require("./book.model");
-const { postBook, getAllBooks, getSingleBook, updateBook } = require("./book.controller");
+const {
+  postBook,
+  getAllBooks,
+  getSingleBook,
+  updateBook,
+  deleteBook,
+} = require("./book.controller");
 
 const router = express.Router();
 
@@ -14,6 +20,9 @@ router.get("/", getAllBooks);
 router.get("/:id", getSingleBook);
 
 //update a book endpoint
-router.put("/edit/:id", updateBook)
+router.put("/edit/:id", updateBook);
+
+//delete a book endpoint
+router.delete("/:id", deleteBook);
 
 module.exports = router;

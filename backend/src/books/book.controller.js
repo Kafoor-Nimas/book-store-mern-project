@@ -54,9 +54,27 @@ const updateBook = async (req, res) => {
     .send({ message: "Book updated successfully", book: updatedBook });
 };
 
+// delete a book
+const deleteBook = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedBook = await Book.findByIdAndDelete(id);
+    if (!deletedBook) {
+      res.status(404).send({ message: "Book is not found" });
+    }
+    res
+      .status(200)
+      .send({ message: "Book deleted successfully", book: deletedBook });
+  } catch (error) {
+    console.error("Error deleting a book", error);
+    res.status(500).send({ message: "failed to delete a book" });
+  }
+};
+
 module.exports = {
   postBook,
   getAllBooks,
   getSingleBook,
   updateBook,
+  deleteBook,
 };
