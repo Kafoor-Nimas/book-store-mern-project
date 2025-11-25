@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const Checkout = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -10,7 +11,7 @@ const Checkout = () => {
     .reduce((acc, item) => acc + item.newPrice, 0)
     .toFixed(2);
 
-  const currentUser = true; //TODO: get user from auth
+  const { currentUser } = useAuth();
   const {
     register,
     handleSubmit,
@@ -45,7 +46,7 @@ const Checkout = () => {
           <div>
             <div>
               <h2 className="font-semibold text-xl text-gray-600 mb-2">
-                Cash On Delevary
+                Cash On Delivary
               </h2>
               <p className="text-gray-500 mb-2">Total Price: ${totalPrice}</p>
               <p className="text-gray-500 mb-6">
@@ -84,8 +85,8 @@ const Checkout = () => {
                         name="email"
                         id="email"
                         className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
-                        // disabled
-                        // defaultValue={currentUser?.email}
+                        disabled
+                        defaultValue={currentUser?.email}
                         placeholder="email@domain.com"
                       />
                     </div>
