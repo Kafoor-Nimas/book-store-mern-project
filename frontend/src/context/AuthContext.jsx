@@ -1,9 +1,14 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
 import { auth } from "../firebase/firebase.config";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
-
 
 const AuthContext = createContext();
 export const useAuth = () => {
@@ -11,7 +16,6 @@ export const useAuth = () => {
 };
 
 const googleProvider = new GoogleAuthProvider();
-
 
 // authProvider
 export const AuthProvider = ({ children }) => {
@@ -24,22 +28,44 @@ export const AuthProvider = ({ children }) => {
   };
 
   //login the user
- const loginUser =async (email , password)=>{
-    return await signInWithEmailAndPassword(auth, email, password)
- }
+  const loginUser = async (email, password) => {
+    return await signInWithEmailAndPassword(auth, email, password);
+  };
 
- //sign in with google
- const SignInWithGoogle = async ()=> {
-    return await signInWithPopup(auth, googleProvider)
+  //sign in with google
+  const SignInWithGoogle = async () => {
+    return await signInWithPopup(auth, googleProvider);
+  };
 
- }
+  //logout the user
+  const logout = () => {
+    return signOut(auth);
+  };
 
+  //manage user
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+      setLoading(false);
+
+      if (user) {
+        const { email, displayName, photoURL } = user;
+        const userData = {
+          email,
+          username: displayName,
+          photo: photoURL,
+        };
+      }
+    });
+    return () => unSubscribe();
+  }, []);
 
   const value = {
     currentUser,
     registerUser,
     loginUser,
-    SignInWithGoogle
+    SignInWithGoogle,
+    logout,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
