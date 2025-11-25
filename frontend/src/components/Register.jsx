@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
@@ -7,7 +7,9 @@ import { useAuth } from "../context/AuthContext";
 const Register = () => {
   const [message, setMessage] = useState("");
 
-  const { registerUser } = useAuth();
+  const { registerUser, SignInWithGoogle } = useAuth();
+
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -26,7 +28,16 @@ const Register = () => {
     }
   };
 
-  const handleGoogleSignIn = () => {};
+  const handleGoogleSignIn = async () => {
+    try {
+      await SignInWithGoogle();
+      alert("Login Succeful!");
+      navigate("/");
+    } catch (error) {
+      alert("Google sign in failed");
+      console.log(error);
+    }
+  };
   return (
     <div className="h-[calc(100vh-120px)]  flex justify-center items-center">
       <div className="w-full max-w-sm mx-auto bg-white px-8 pt-6 pb-8 mb-4 rounded shadow-md">
