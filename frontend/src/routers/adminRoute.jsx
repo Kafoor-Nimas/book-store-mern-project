@@ -1,12 +1,12 @@
 import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-const adminRoute = ({ children }) => {
+const AdminRoute = ({ children }) => {
   const token = localStorage.getItem("token");
   if (!token) {
-    return <Navigate to="/admin" />;
+    return <Navigate to="/admin" />; // Login page
   }
   return children ? children : <Outlet />;
 };
 
-export default adminRoute;
+export default AdminRoute;
