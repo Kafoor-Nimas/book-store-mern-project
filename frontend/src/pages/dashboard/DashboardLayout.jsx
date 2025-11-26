@@ -1,37 +1,11 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import getBaseUrl from "../../utils/baseURL";
+
 import Loading from "../../components/Loading";
-import axios from "axios";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { HiViewGridAdd } from "react-icons/hi";
 import { MdOutlineManageHistory } from "react-icons/md";
 
 const DashboardLayout = () => {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState({});
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${getBaseUrl()}/api/admin`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-            "Content-Type": "application/json",
-          },
-        });
-        setData(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    };
-    fetchData();
-  }, []);
-  if (loading) return <Loading />;
   return (
     <section className="flex md:bg-gray-100 min-h-screen overflow-hidden">
       <aside className="hidden sm:flex sm:flex-col">
@@ -64,7 +38,7 @@ const DashboardLayout = () => {
               </svg>
             </a>
             <Link
-              to="#"
+              to="/dashboard"
               className="inline-flex items-center justify-center py-3 text-purple-600 bg-white rounded-lg"
             >
               <span className="sr-only">Dashboard</span>
@@ -84,14 +58,14 @@ const DashboardLayout = () => {
               </svg>
             </Link>
             <Link
-              to="#"
+              to="/dashboard/add-new-book"
               className="inline-flex items-center justify-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg"
             >
               <span className="sr-only">Add Book</span>
               <HiViewGridAdd className="h-6 w-6" />
             </Link>
             <Link
-              to="#"
+              to="/dashboard/manage-books"
               className="inline-flex items-center justify-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg"
             >
               <span className="sr-only">Documents</span>
@@ -239,7 +213,7 @@ const DashboardLayout = () => {
             </div>
             <div className="flex flex-col md:flex-row items-start justify-end -mb-3">
               <Link
-                to="#"
+                to="/dashboard/manage-books"
                 className="inline-flex px-5 py-3 text-purple-600 hover:text-purple-700 focus:text-purple-700 hover:bg-purple-100 focus:bg-purple-100 border border-purple-600 rounded-md mb-3"
               >
                 <svg
@@ -259,7 +233,7 @@ const DashboardLayout = () => {
                 Manage Books
               </Link>
               <Link
-                to="#"
+                to="/dashboard/add-new-book"
                 className="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3"
               >
                 <svg
