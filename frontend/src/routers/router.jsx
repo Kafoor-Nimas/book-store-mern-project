@@ -56,6 +56,28 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/dashboard",
+    element: <div>Dashboard</div>,
+    children: [
+      {
+        path: "",
+        element: <div>Dashboard</div>,
+      },
+      {
+        path: "add-new-book",
+        element: <div>Add New Book</div>,
+      },
+      {
+        path: "edit-book/:id",
+        element: <div>Edit Book</div>,
+      },
+      {
+        path: "manage-books",
+        element: <div>Manage Books</div>,
+      },
+    ],
+  },
 ]);
 
 export default router;
