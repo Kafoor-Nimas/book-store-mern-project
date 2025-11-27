@@ -113,7 +113,7 @@ Local image storage with safe paths
 
 ## 🚀 Live Demo
 
-[https://your-bookstore-live-link.com](https://your-bookstore-live-link.com) _(Update with your deployed link)_
+[https://book-store-frontend-inky-iota.vercel.app](https://book-store-frontend-inky-iota.vercel.app)
 
 # 📝 License
 
