@@ -10,7 +10,7 @@ const DashboardLayout = () => {
     <section className="flex md:bg-gray-100 min-h-screen overflow-hidden">
       <aside className="hidden sm:flex sm:flex-col">
         <a
-          href="#"
+          href="/"
           className="inline-flex items-center justify-center h-20 w-20 bg-purple-600 hover:bg-purple-500 focus:bg-purple-500"
         >
           <img src="/fav-icon.png" alt="" />
