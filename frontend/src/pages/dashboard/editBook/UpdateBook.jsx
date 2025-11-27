@@ -9,10 +9,17 @@ import {
 } from "../../../redux/features/books/booksApi";
 import Loading from "../../../components/Loading";
 import Swal from "sweetalert2";
+import axios from "axios";
+import getBaseUrl from "../../../utils/baseURL";
 
 const UpdateBook = () => {
   const { id } = useParams();
-  const { data: bookData, isLoading, isError } = useFetchBookByIdQuery(id);
+  const {
+    data: bookData,
+    isLoading,
+    isError,
+    refetch,
+  } = useFetchBookByIdQuery(id);
   const [updateBook] = useUpdateBookMutation(id);
 
   const { register, handleSubmit, setValue, reset } = useForm();
@@ -38,8 +45,14 @@ const UpdateBook = () => {
       newPrice: Number(data.newPrice),
       coverImage: data.coverImage || bookData.coverImage,
     };
+
     try {
-      await updateBook({ id, updateBookData }).unwrap();
+      await axios.put(`${getBaseUrl()}/api/books/edit/${id}`, updateBookData, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
       Swal.fire({
         title: "Book updated",
         text: "Your book ia updated succeessfully!",
@@ -49,6 +62,7 @@ const UpdateBook = () => {
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, It's okay!",
       });
+      await refetch();
     } catch (error) {
       console.log("Failed to update book.", error);
       alert("Failed to update book.");
