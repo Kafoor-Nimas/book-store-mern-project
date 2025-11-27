@@ -1,7 +1,5 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
 import getBaseUrl from "../../utils/baseURL";
@@ -11,9 +9,8 @@ import RevenueChart from "./RevenueChart";
 const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState({});
-
+  // console.log(data)
   const navigate = useNavigate();
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -23,16 +20,18 @@ const Dashboard = () => {
             "Content-Type": "application/json",
           },
         });
+
         setData(response.data);
         setLoading(false);
       } catch (error) {
         console.error("Error:", error);
       }
     };
+
     fetchData();
   }, []);
 
-  console.log(data);
+  // console.log(data)
 
   if (loading) return <Loading />;
 

@@ -7,11 +7,13 @@ import { useAuth } from "../context/AuthContext";
 const Login = () => {
   const [message, setMessage] = useState("");
   const { loginUser, SignInWithGoogle } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    watch,
+    setError,
     formState: { errors },
   } = useForm();
 
@@ -23,6 +25,48 @@ const Login = () => {
     } catch (error) {
       setMessage("Please provide valid email and password");
       console.error(error);
+
+      // Handle specific Firebase errors
+      if (error.code === "auth/invalid-credential") {
+        setError("root", {
+          type: "manual",
+          message:
+            "Invalid email or password. Please check your credentials and try again.",
+        });
+      } else if (error.code === "auth/user-not-found") {
+        setError("email", {
+          type: "manual",
+          message: "No account found with this email.",
+        });
+      } else if (error.code === "auth/wrong-password") {
+        setError("password", {
+          type: "manual",
+          message: "Incorrect password.",
+        });
+      } else if (error.code === "auth/too-many-requests") {
+        setError("root", {
+          type: "manual",
+          message:
+            "Too many failed login attempts. Please try again later or reset your password.",
+        });
+      } else if (error.code === "auth/user-disabled") {
+        setError("root", {
+          type: "manual",
+          message: "This account has been disabled. Please contact support.",
+        });
+      } else if (error.code === "auth/invalid-email") {
+        setError("email", {
+          type: "manual",
+          message: "Invalid email address format.",
+        });
+      } else {
+        setError("root", {
+          type: "manual",
+          message: error.message || "Login failed. Please try again.",
+        });
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
