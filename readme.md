@@ -77,7 +77,9 @@ Firebase account with a project set up
 2. Backend Setup
 
 cd backend
+
 npm install
+
 npm run start
 
 Create a .env file in the backend directory:
@@ -88,11 +90,15 @@ JWT_SECRET=your_jwt_secret_key
 3. Frontend Setup
 
 cd frontend
+
 npm install
+
 npm run dev
 
 App will run at:
+
 Frontend: http://localhost:5173
+
 Backend: http://localhost:5000
 
 # 🛡 Security
@@ -113,16 +119,22 @@ Local image storage with safe paths
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-👤 Author
+# 👤 Author
+
 Kafoor Nimas
 
 GitHub: @Kafoor-Nimas
+
 LinkedIn: www.linkedin.com/in/nimas-kafoor
+
 Email: nimaskafoor@gmail.com
 
 🙏 Acknowledgments
 
 Firebase for authentication services
+
 MongoDB for database solutions
+
 Tailwind CSS for the styling framework
+
 Redux Toolkit for state management
