@@ -11,7 +11,9 @@ require("dotenv").config();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["http://localhost:5173"], //frontend url
+    origin: [
+      "http://localhost:5173","https://book-store-mern-project-mytc.vercel.app/"
+    ], //frontend url
     credentials: true,
   })
 );
